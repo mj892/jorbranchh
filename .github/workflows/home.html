@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Plant</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .background-blur {
+            background-image: url('Images/ggg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(2px);
+            z-index: -1; 
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4e3;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #6d656b;
+            height: 10vh;
+            width: 100%;
+            color: white;
+            padding: 0 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            padding: 24px 30px;
+            border-radius: 5px;
+            font-size: 20px; 
+        }
+
+        .navbar a:hover {
+            background-color: #4b4d48;
+        }
+
+        .navbar img {
+            height: 62px; 
+            width: 200px;
+            margin-left: -272px;
+            object-fit: fill; 
+            border-radius: 100px; /* Made all corners round */
+        }
+
+        .dropdown { 
+            position: relative;
+            display: inline-block;
+            padding: 0 0px;
+            z-index: 1;
+            width: 19%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #6d656b;
+            color: black; 
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            height: 28vh;
+            left: -16px;
+            top: 177%; 
+            width: 100%;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 20px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            width: 67%;
+        }
+
+        .plant-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .circle-image {
+            flex: 1;
+            margin-top: 55px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .circle-image img {
+            width: 370px;
+            height: 370px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid black;
+            transition: transform 0.3s ease; /* Smooth transition for the scaling */
+        }
+
+        .circle-image:hover img {
+            transform: scale(1.1); /* Scale up the image when hovered */
+        }
+
+        .text-content {
+            flex: 1;
+            padding-left: 50px;
+        }
+
+        .text-content h1 {
+            font-size: 3rem;
+            color: #2a5d23;
+            background-color: #f8f8ff;
+        }
+
+        .text-content .subheading {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            line-height: 1.5;
+            max-width: 500px;
+            color: #646f5a;
+            background-color: #f8f8ff;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 120px;
+        }
+
+        .text-box {
+            background-color: #fdf5e6;
+            padding: 20px;
+            border: 2px solid #2a5d23;
+            border-radius: 15px;
+            max-width: 900px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .text-box img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .text-box p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s ease; /* Smooth transition for the transformation */
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Slightly darker green on hover */
+            transform: scale(1.1); /* Scale up the button when hovered */
+        }
+
+        .divider {
+            border: none;
+            height: 5px;
+            background-color: black;
+            margin-top: 70px;
+            margin-bottom: -70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blur"></div>
+    <div class="navbar">
+        <div class="dropdown">
+            <a href="#">☰</a>
+            <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="purchases.html">Purchases</a>
+                 <a href="#" onclick="confirmLogout()">Logout</a>
+            </div>
+        </div>
+        <img src="images/logo.jpg" alt="Logo">
+        <a href="home.html">Home</a>
+        <a href="shop.html#all-products">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About Us</a>
+    </div>
+
+    <div class="container">
+        <section class="plant-section">
+            <div class="circle-image">
+                <img src="images/carmona.png" alt="Plants" class="main-image" data-hover="images/carmona.png">
+            </div>
+
+            <div class="text-content">
+                <h1>"Planting today for a greener tomorrow."</h1>
+                <p class="subheading">This conveys a forward-thinking and environmentally conscious mindset, focusing on sustainability and long-term benefits.</p>
+                <a href="shop.html" class="button">Shop now</a>
+                <hr class="divider">
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="text-box">
+                <p>"Trees are vital guardians of our planet and all living beings. They provide nourishment, shelter, and a lifeline for countless species. Trees purify our air and water, standing as symbols of resilience and life."</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const circleImage = document.querySelector('.circle-image img');
+
+        circleImage.addEventListener('mouseenter', function() {
+            const hoverImage = this.getAttribute('data-hover');
+            this.setAttribute('src', hoverImage);
+        });
+
+        circleImage.addEventListener('mouseleave', function() {
+            this.setAttribute('src', this.getAttribute('data-original'));
+        });
+
+       
+        circleImage.setAttribute('data-original', circleImage.src);
+		
+		
+ function confirmLogout() {
+        const confirmed = confirm("Are you sure you want to log out?");
+        if (confirmed) {
+            window.location.href = "jorlog.php"; // Redirect to the logout page
+        }
+    }
+</script>
+    
+</body>
+</html>
