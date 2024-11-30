@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorbranch - Seedlings for a Greener Future</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-blur"></div>
+    <div class="navbar">
+        <div class="dropdown">
+            <a href="#">☰</a>
+            <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="purchases.html">Purchases</a>
+                  <a href="#" onclick="confirmLogout()">Logout</a>
+            </div>
+        </div>
+        <img src="images/logo.jpg" alt="Logo">
+        <a href="home.html">Home</a>
+        <a href="shop.html#all-products">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About Us</a>
+    </div>
+    
+    
+    <div class="purchase-history-container">
+        <div class="to-ship">
+            <h2>To Ship</h2>
+            <div class="order-item">
+                <img src="images/lann.jpg" alt="Lanzones">
+                <div class="order-details">
+                    <p><strong>Order #001</strong></p>
+                    <p>Product: Lanzones</p>
+					<p>Quantity: 1</p>
+					<p>Price: Php80</p>
+                    <p>Date: 9/11/24</p>
+                </div>
+            </div>
+            <div class="order-item">
+                <img src="images/pot1.jpg" alt="Seedling Pack">
+                <div class="order-details">
+                    <p><strong>Order #002</strong></p>
+                    <p>Product: Plumeria</p>
+					<p>Quantity: 1</p>
+					 <p>Price: Php300</p>
+                    <p>Date: 9/15/24</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="delivered">
+            <h2>Delivered</h2>
+            <div class="order-item">
+                <img src="images/bon.png" alt="Bonsai Tree">
+                <div class="order-details">
+                    <p><strong>Order #003</strong></p>
+                    <p>Product: Ficus bonsai</p>
+					<p>Quantity: 2</p>
+					 <p>Price: Php1700</p>
+                    <p>Date: 8/21/24</p>
+                </div>
+            </div>
+			<div class="order-item">
+                <img src="images/agoho.jpg" alt="Bonsai Tree">
+                <div class="order-details">
+                    <p><strong>Order #003</strong></p>
+                    <p>Product: Agoho</p>
+					<p>Quantity: 1</p>
+					 <p>Price: Php350</p>
+                    <p>Date: 8/21/24</p>
+                </div>
+            </div>
+            <div class="order-item">
+                <img src="images/nar.jpg" alt="Fertilizer">
+                <div class="order-details">
+                    <p><strong>Order #004</strong></p>
+                    <p>Product: Narra</p>
+					<p>Quantity: 2</p>
+					<p>Price: Php300</p>
+                    <p>Date: 8/18/24</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.background-blur {
+    background-color:rgba(112, 128, 144, 0.9);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4e3;
+    color: #333;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6d656b;
+    height: 10vh;
+    width: 100%;
+    color: white;
+    padding: 0 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    padding: 24px 30px;
+    border-radius: 5px;
+    font-size: 20px; 
+}
+
+.navbar a:hover {
+    background-color: #4b4d48;
+}
+
+.navbar img {
+    height: 62px; 
+    width: 200px;
+    margin-left: -272px;
+    object-fit: fill; 
+    border-radius: 100px;
+}
+
+.dropdown { 
+    position: relative;
+    display: inline-block;
+    padding: 0 0px;
+    z-index: 1;
+    width: 19%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #6d656b;
+    color: black; 
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    height: 28vh;
+    left: -16px;
+    top: 177%; 
+    width: 100%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    width: 67%;
+}
+
+.vision-mission-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgba(219, 205, 205, 2);
+    border-radius: 15px;
+    padding: 40px;
+    width: 800px;  
+    height: 596px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 6vh;
+}
+
+.vision, .mission, .return-policy {
+    width: 100%;
+}
+
+.vision h1, .mission h1, .return-policy h1 {
+    font-size: 24px;
+    color: #2c5f2d;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.vision p, .mission p, .return-policy p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.separator {
+    border: none;
+    border-top: 3px solid #2c5f2d;
+    margin: 9px 0;
+}
+
+.purchase-history-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgba(219, 205, 205, 2);
+    border-radius: 15px;
+    padding: 40px;
+    width: 80%;
+    max-width: 1200px;
+    margin: 100px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.to-ship, .delivered {
+    width: 48%;
+}
+
+.to-ship h2, .delivered h2 {
+    font-size: 24px;
+    color: #2c5f2d;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.order-details {
+    font-size: 16px;
+}
+
+.order-details p {
+    margin: 5px 0;
+}
+
+.order-details strong {
+    font-size: 18px;
+    color: #2c5f2d;
+}	
+</style>
+<script>
+ function confirmLogout() {
+        const confirmed = confirm("Are you sure you want to log out?");
+        if (confirmed) {
+            window.location.href = "jorlog.php"; 
+        }
+    }
+</script>

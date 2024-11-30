@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Example</title>
+    <style>
+        body {
+            background: rgb(193, 154, 114);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .background-blur {
+            background-image: url('Images/jj.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(8px);
+            z-index: -1; 
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color:  #6d656b;
+            height: 10vh;
+            width: 100%;
+            color: white;
+            padding: 0 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            padding: 24px 30px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            font-size: 20px; 
+        }
+
+        .navbar a:hover {
+            background-color: #4b4d48;
+        }
+
+        .navbar img {
+            height: 62px; 
+            width: 200px;
+            margin-left: -272px;
+            object-fit: fill; 
+            border-radius: 100px;
+        }
+
+
+        .dropdown { 
+            position: relative;
+            display: inline-block;
+            padding: 0 0px;
+            z-index: 1;
+            width: 19%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #6d656b;
+            color: black; 
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            height: 28vh;
+            left: -16px;
+            top: 177%; 
+            width: 100%;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 20px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            width: 67%;
+        }
+
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 90px; 
+            justify-content: center; 
+            max-width: 1000px; 
+            margin: 80px auto 0; 
+        }
+
+        .card {
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px; 
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer; 
+        }
+
+        .card img {
+            width: 100%; 
+            border-radius: 10px; 
+            object-fit: cover; 
+            display: block; 
+        }
+
+        .card h3 {
+            font-size: 24px; 
+            margin: 15px 0 10px; 
+        }
+
+        .info-box {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            background: white;
+            border: 2px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 4;
+            width: 90%; 
+            max-width: 600px; 
+        }
+
+        .info-box h2 {
+            margin: 0 0 10px;
+        }
+
+        .info-box p {
+            margin: 0 0 10px;
+        }
+
+        .input-field {
+            margin-bottom: 10px;
+            width: calc(100% - 20px); 
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .payment-method {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .payment-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-logo {
+            width: 30px; 
+            height: auto;
+            margin-right: 5px;
+        }
+
+        .close-btn,
+        .confirm-btn,
+        .add-to-cart-btn {
+            cursor: pointer;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            color: white;
+            background-color: red;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+        }
+
+        .confirm-btn {
+            background-color: green;
+        }
+
+        .add-to-cart-btn {
+            background-color: blue;
+            margin-top: 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.10);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blur"></div>
+    <div class="navbar">
+        <div class="dropdown">
+            <a href="#">☰</a>
+            <div class="dropdown-content">
+               <a href="profile.php">Profile</a>
+                <a href="purchases.html">Purchases</a>
+			    <a href="#" onclick="confirmLogout()">Logout</a>
+            </div>
+        </div>
+        <img src="images/logo.jpg" alt="Logo">
+        <a href="home.html">Home</a>
+        <a href="shop.html#all-products">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About Us</a>
+    </div>
+
+    <div class="event-cards">
+        <div class="card" onclick="showInfo('Ficus bonsai', 'Php850', 'Place in bright, indirect sunlight and water when the top inch of soil is dry. Maintain humidity by misting leaves. Keep in a warm spot (65-75°F) and avoid drafts. Regularly prune to shape and remove dead leaves. Fertilize every 4-6 weeks in spring and summer. Repot every 1-2 years in spring. Check for pests and treat as needed. Rotate occasionally for even growth. Patience is key!')">
+            <img src="images/bon.png" alt="Ficus bonsai">
+            <h3>Ficus bonsai</h3>
+            <h4 style="color: red;">Php 850</h4>
+            <p style="font-size: small; font-style: italic;">Tax and shipping fees are included in the price.</p>
+        </div>
+
+        <div class="card" onclick="showInfo('Carmona bonsai', 'Php1500', 'Place in bright, indirect sunlight and water when the top inch of soil is dry. Maintain humidity by misting leaves regularly. Keep in a warm spot and avoid drafts. Regularly prune to shape and remove dead leaves. Fertilize every 4-6 weeks in spring and summer. Repot every 2-3 years in spring. Check for pests and treat as needed. Patience is key!')">
+            <img src="Images/carmona.png" alt="Carmona bonsai">
+            <h3>Carmona bonsai</h3>
+            <h4 style="color: red;">Php 1500</h4>
+            <p style="font-size: small; font-style: italic;">Tax and shipping fees are included in the price.</p>
+        </div>
+        <div class="card" onclick="showInfo('Juniper bonsai', 'Php1200', 'Place in full sunlight for at least 6 hours a day. Water when the top inch of soil is dry, ensuring proper drainage. Maintain humidity by misting leaves in dry conditions. Keep in a cool spot (60-75°F) and avoid extreme heat. Prune regularly to shape and remove dead branches. Fertilize every 4-6 weeks during the growing season. Repot every 2-3 years in spring. Check for pests and treat as needed. Patience is key for a thriving bonsai!')">
+            <img src="Images/jjun.png" alt="Juniper bonsai">
+            <h3>Juniper bonsai</h3>
+            <h4 style="color: red;">Php 1200</h4>
+            <p style="font-size: small; font-style: italic;">Tax and shipping fees are included in the price.</p>
+        </div>
+    </div>
+
+    <div class="info-box" id="infoBox">
+        <button class="close-btn" onclick="closeInfo()">✖</button>
+        <h2 id="fruitName">Fruit Name</h2>
+        <p id="fruitPrice">Price: </p>
+        <h3>How to Plant:</h3>
+        <p id="plantInstructions"></p>
+
+        <h3>Order Information:</h3>
+        <input type="text" class="input-field" id="name" placeholder="Your Name" required pattern="[A-Za-z\s]+" title="Only letters and spaces allowed">
+        <input type="number" class="input-field" id="quantity" placeholder="Quantity" min="1" max="15" required>
+        <input type="tel" class="input-field" id="cellphone" placeholder="Cellphone Number (11 digits)" required pattern="09\d{9}" title="Must start with 09 and be 11 digits long">
+        <input type="text" class="input-field" id="address" placeholder="Address" required pattern="[A-Za-z0-9\s,]+" title="Only letters, numbers, and spaces allowed">
+
+        <div class="payment-method">
+            <label class="payment-box">
+                <img src="images/gcash.png" class="payment-logo" alt="GCash Logo">
+                <input type="radio" name="payment" value="Gcash" required> GCash
+            </label>
+            <label class="payment-box">
+                <img src="images/paypal.png" class="payment-logo" alt="PayPal Logo"> 
+                <input type="radio" name="payment" value="Paypal" required> PayPal
+            </label>
+            <label class="payment-box">
+                <input type="radio" name="payment" value="Cod" required> Cash on Delivery (COD)
+            </label>
+        </div>
+
+        <button class="confirm-btn" onclick="confirmOrder()">Confirm</button>
+        <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <script>
+        function confirmOrder() {
+            const name = document.getElementById('name').value.trim();
+            const quantity = document.getElementById('quantity').value.trim();
+            const cellphone = document.getElementById('cellphone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const payment = document.querySelector('input[name="payment"]:checked');
+            const fruitName = document.getElementById('fruitName').innerText;
+            const fruitPrice = document.getElementById('fruitPrice').innerText;
+            
+			const nameRegex = /^[A-Za-z\s]{5,}$/; 
+        const addressRegex = /^[A-Za-z0-9\s,]+$/;
+        const cellphoneRegex = /^09\d{9}$/;
+		
+		
+			 if (!name || !quantity || !cellphone || !address || !payment) {
+                alert("Please fill out all fields before confirming.");
+                return;
+            }
+
+
+      
+        if (!nameRegex.test(name)) {
+            alert("Name must be at least 5 letters and contain no special characters.");
+            return;
+        }
+        
+        if (quantity < 1 || quantity > 15) {
+            alert("Quantity must be between 1 and 15.");
+            return;
+        }
+
+        if (!cellphoneRegex.test(cellphone)) {
+            alert("Cellphone number must start with 09 and be 11 digits long.");
+            return;
+        }
+
+        if (!addressRegex.test(address)) {
+            alert("Address must not contain special characters.");
+            return;
+        }
+
+        if (!payment) {
+            alert("Please select a payment method.");
+            return;
+        }
+		
+            if (!name || !quantity || !cellphone || !address || !payment) {
+                alert("Please fill out all fields before confirming.");
+                return;
+            }
+
+            const url = `receipt2.php?name=${encodeURIComponent(name)}&quantity=${encodeURIComponent(quantity)}&cellphone=${encodeURIComponent(cellphone)}&address=${encodeURIComponent(address)}&payment=${encodeURIComponent(payment.value)}&fruitName=${encodeURIComponent(fruitName)}&fruitPrice=${encodeURIComponent(fruitPrice)}`;
+
+            window.location.href = url;
+        }
+
+        function showInfo(fruit, price, instructions) {
+            document.getElementById('fruitName').innerText = fruit;
+            document.getElementById('fruitPrice').innerText = 'Price: ' + price;
+            document.getElementById('plantInstructions').innerText = instructions;
+            document.getElementById('infoBox').style.display = 'block';
+        }
+
+        function closeInfo() {
+            document.getElementById('infoBox').style.display = 'none';
+        }
+       
+	   function addToCart() {
+    const quantity = document.getElementById('quantity').value.trim();
+
+    if (!quantity || quantity < 1) {
+        alert("Please enter a quantity before adding to cart.");
+        return;
+    }
+
+    if (quantity > 15) {
+        alert("You can only add up to 15 items to the cart.");
+        return;
+    }
+
+    const fruitName = document.getElementById('fruitName').innerText;
+    const message = `${fruitName} (Quantity: ${quantity}) successfully added to cart!`;
+    alert(message);
+}
+    
+    	function confirmLogout() {
+        const confirmed = confirm("Are you sure you want to log out?");
+        if (confirmed) {
+            window.location.href = "jorlog.php";
+        }
+    }    
+    </script>
+</body>
+</html>
